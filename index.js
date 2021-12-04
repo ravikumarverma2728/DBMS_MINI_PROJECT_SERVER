@@ -5,6 +5,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+const PORT = 3001;
 
 const db = mysql.createConnection({
     user: "root",
@@ -55,6 +56,6 @@ db.query("SELECT * FROM students_elective_final",(err,result)=>{
 });
 });
 
-app.listen(3001,()=>{
-    console.log("it's working");
+app.listen(process.env.PORT || PORT ,()=>{
+    console.log(`Server running on port ${PORT}`);
 });
